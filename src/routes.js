@@ -3,6 +3,7 @@ const userController = require("./controllers/userController")
 const documents = require("./controllers/document")
 const auth = require("./controllers/auth")
 const jwt = require("jsonwebtoken")
+const { upload } = require("./utils")
 
 const route = express.Router()
 
@@ -24,7 +25,7 @@ route
     .get("/users/:id", authenticateToken, userController.getById)
     .post("/users", authenticateToken, userController.create)
     .put("/users", authenticateToken, userController.update)
-    .delete("/users", authenticateToken, userController.del)
+    .delete("/users/:id", authenticateToken, userController.del)
 
 route
     .post("/auth/login", auth.login)
@@ -34,8 +35,8 @@ route
 route
     .get("/document", authenticateToken, documents.get)
     .get("/document/:id", authenticateToken, documents.getById)
-    .post("/document", authenticateToken, documents.create)
+    .post("/document", upload.single("file"), authenticateToken, documents.create)
     .put("/document", authenticateToken, documents.update)
-    .delete("/document", authenticateToken, documents.del)
+    .delete("/document/:id", authenticateToken, documents.del)
 
 module.exports = route

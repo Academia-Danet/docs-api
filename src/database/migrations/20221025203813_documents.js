@@ -4,7 +4,7 @@
  */
 exports.up = function (knex) {
   return knex.schema.createTable("documents", (table) => {
-    table.increments('id').unique()
+    table.string('id').unique()
     table.string("identifier").notNullable()
     table.string('type').notNullable();
     table.string('picture').notNullable();
