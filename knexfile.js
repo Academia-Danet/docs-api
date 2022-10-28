@@ -1,7 +1,7 @@
 const pg = require("pg");
 require("dotenv").config()
 
-pg.defaults.ssl = true;
+pg.defaults.ssl = false;
 
 const development = {
   client: "pg",
@@ -9,9 +9,9 @@ const development = {
     host: process.env.DB_HOST || "localhost",
     database: process.env.DB_DATABASE || "docs-api",
     user: process.env.DB_USER || "postgres",
-    password: process.env.BD_PASSWORD || "root",
+    password: process.env.BD_PASSWORD || "12345",
     port: process.env.DB_PORT || "5432",
-    ssl: { rejectUnauthorized: false },
+    // ssl: { rejectUnauthorized: false },
   },
   migrations: {
     tableName: "knex_migrations",

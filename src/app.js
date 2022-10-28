@@ -8,6 +8,6 @@ app.get("/", (req, res)=>{
     res.json({message: "DOCS API"})
 })
 
-app.use(routes)
+app.use("/api/v1", routes)
 
 module.exports = app

@@ -1,3 +1,5 @@
+const { v4: uuidv4 } = require("uuid")
+
 const {getUser, createUser, getUserByID, updateUser, deleteUser } = require("../use-cases/user")
 
 const get = async (req, res)=>{
@@ -10,7 +12,7 @@ const getById = async (req, res)=>{
 }
 const create = async (req, res)=>{
     const { name, surname, email, password } = req.body
-    const data = {name, surname, email, password}
+    const data = {"id": uuidv4(), name, surname, email, password}
     const users = await createUser(data)
     return res.status(200).json(users)
 }

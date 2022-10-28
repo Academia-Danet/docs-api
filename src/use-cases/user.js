@@ -10,7 +10,7 @@ async function createUser(data) {
   return await knex("users").create(data);
 }
 async function updateUser(id, data) {
-  return await knex("users").where({id}).update({... data, update_at: new Date()});
+  return await knex("users").where({id}).update({...data, updated_at: new Date()});
 }
 async function deleteUser(id) {
   return await knex("users").where({id}).del();
